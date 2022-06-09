@@ -1,0 +1,19 @@
+{
+  "name": "pern-todo",
+  "version": "1.0.0",
+  "description": "Full stack todo app using the PERN stack (PostgreSQL, Express, React, Node).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robdcal/todo-fullstack.git"
+  },
+  "bugs": {
+    "url": "https://github.com/robdcal/todo-fullstack/issues"
+  },
+  "homepage": "https://github.com/robdcal/todo-fullstack#readme"
+}
