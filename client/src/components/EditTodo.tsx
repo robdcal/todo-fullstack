@@ -4,6 +4,7 @@ interface ToDo {
   todo: {
     todo_id: string;
     description: string;
+    completed: boolean;
   };
 }
 
@@ -37,6 +38,7 @@ const EditTodo = ({ todo }: ToDo) => {
         className="btn btn-warning"
         data-bs-toggle="modal"
         data-bs-target={`#modal-id-${todo.todo_id}`}
+        disabled={todo.completed}
       >
         Edit
       </button>
