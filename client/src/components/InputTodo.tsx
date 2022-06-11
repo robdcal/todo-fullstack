@@ -3,8 +3,8 @@ import React, { Fragment, useState } from "react";
 const InputTodo = () => {
   const [description, setDescription] = useState("");
 
-  const onSubmitForm = async (e) => {
-    e.preventDefault();
+  const onSubmitForm = async (event: React.SyntheticEvent) => {
+    event.preventDefault();
     try {
       const body = { description };
       const response = await fetch("http://localhost:5000/todos", {
@@ -13,7 +13,7 @@ const InputTodo = () => {
         body: JSON.stringify(body),
       });
 
-      window.location = "/";
+      window.location.href = "/";
     } catch (error) {
       console.error(error.message);
     }
@@ -27,7 +27,7 @@ const InputTodo = () => {
           type="text"
           className="form-control"
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(event) => setDescription(event.target.value)}
         />
         <button className="btn btn-success">Add</button>
       </form>

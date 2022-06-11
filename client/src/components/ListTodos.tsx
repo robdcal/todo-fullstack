@@ -1,8 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
 
+export interface ToDo {
+  todo_id: string;
+  description: string;
+}
+
+interface ToDoContainer extends Array<ToDo> {}
+
 const ListTodos = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState<ToDoContainer>([]);
 
   const getTodos = async () => {
     try {
@@ -14,7 +21,7 @@ const ListTodos = () => {
     }
   };
 
-  const deleteTodo = async (id) => {
+  const deleteTodo = async (id: string) => {
     try {
       const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
         method: "DELETE",
@@ -34,9 +41,9 @@ const ListTodos = () => {
       <table className="table mt-5 text-center">
         <thead>
           <tr>
-            <td>Description</td>
-            <td>Edit</td>
-            <td>Delete</td>
+            <th>Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>

@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/robdcal/todo-fullstack/issues"
   },
-  "homepage": "https://github.com/robdcal/todo-fullstack#readme"
+  "homepage": "https://github.com/robdcal/todo-fullstack#readme",
+  "dependencies": {}
 }

@@ -1,9 +1,18 @@
 import React, { Fragment, useState } from "react";
 
-const EditTodo = ({ todo }) => {
+interface ToDo {
+  todo: {
+    todo_id: string;
+    description: string;
+  };
+}
+
+const EditTodo = ({ todo }: ToDo) => {
   const [description, setDescription] = useState(todo.description);
 
-  const updateDescription = async (event) => {
+  const updateDescription = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     event.preventDefault();
     try {
       const body = { description };
@@ -15,7 +24,7 @@ const EditTodo = ({ todo }) => {
           body: JSON.stringify(body),
         }
       );
-      window.location("/");
+      window.location.href = "/";
     } catch (error) {
       console.error(error.message);
     }
@@ -35,7 +44,7 @@ const EditTodo = ({ todo }) => {
       <div
         className="modal fade"
         id={`modal-id-${todo.todo_id}`}
-        tabindex="-1"
+        tabIndex={-1}
         role="dialog"
         aria-labelledby="modelTitleId"
         aria-hidden="true"
@@ -43,7 +52,7 @@ const EditTodo = ({ todo }) => {
       >
         <div className="modal-dialog" role="document">
           <div className="modal-content">
-            <div class="modal-header">
+            <div className="modal-header">
               <h5 className="modal-title">Edit Todo</h5>
               <button
                 type="button"
