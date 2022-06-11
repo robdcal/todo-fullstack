@@ -16,5 +16,7 @@
     "url": "https://github.com/robdcal/todo-fullstack/issues"
   },
   "homepage": "https://github.com/robdcal/todo-fullstack#readme",
-  "dependencies": {}
+  "dependencies": {
+    "dotenv": "^16.0.1"
+  }
 }
