@@ -72,7 +72,10 @@ const ListTodos = () => {
             .sort((a, b) => +a.completed - +b.completed)
             .map((todo) => {
               return (
-                <tr key={todo.todo_id}>
+                <tr
+                  className={todo.completed ? "bg-black bg-opacity-10" : ""}
+                  key={todo.todo_id}
+                >
                   <td
                     style={
                       todo.completed ? { textDecoration: "line-through" } : {}
