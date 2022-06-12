@@ -1,4 +1,8 @@
 import React, { Fragment, useState } from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
 const InputTodo = () => {
   const [description, setDescription] = useState("");
@@ -21,16 +25,37 @@ const InputTodo = () => {
 
   return (
     <Fragment>
-      <h1 className="text-center mt-5">PERN Todo List</h1>
-      <form className="d-flex mt-5" onSubmit={onSubmitForm}>
-        <input
-          type="text"
-          className="form-control"
+      <Box sx={{ mt: 8 }}>
+        <Typography variant="h1" align="center">
+          PERN Todo List
+        </Typography>
+      </Box>
+      <Box
+        component="form"
+        onSubmit={onSubmitForm}
+        sx={{
+          mt: 4,
+          display: "flex",
+          width: 500,
+          maxWidth: "100%",
+          mx: "auto",
+        }}
+      >
+        <TextField
+          label="Add new todo"
+          variant="outlined"
           value={description}
           onChange={(event) => setDescription(event.target.value)}
+          fullWidth
+          InputProps={{
+            endAdornment: (
+              <Button variant="contained" type="submit">
+                Add
+              </Button>
+            ),
+          }}
         />
-        <button className="btn btn-success">Add</button>
-      </form>
+      </Box>
     </Fragment>
   );
 };

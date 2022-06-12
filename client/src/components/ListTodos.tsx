@@ -1,5 +1,15 @@
 import React, { Fragment, useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import DoneIcon from "@mui/icons-material/Done";
 
 export interface ToDo {
   todo_id: string;
@@ -58,57 +68,55 @@ const ListTodos = () => {
 
   return (
     <Fragment>
-      <table className="table mt-5 text-center">
-        <thead>
-          <tr>
-            <th>Description</th>
-            <th>Edit</th>
-            <th>Delete</th>
-            <th>Complete</th>
-          </tr>
-        </thead>
-        <tbody>
+      <Table sx={{ mt: 4 }}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Description</TableCell>
+            <TableCell>Edit</TableCell>
+            <TableCell>Delete</TableCell>
+            <TableCell>Complete</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {todos
             .sort((a, b) => +a.completed - +b.completed)
             .map((todo) => {
               return (
-                <tr
-                  className={todo.completed ? "bg-black bg-opacity-10" : ""}
-                  key={todo.todo_id}
-                >
-                  <td
+                <TableRow key={todo.todo_id}>
+                  <TableCell
                     style={
                       todo.completed ? { textDecoration: "line-through" } : {}
                     }
                   >
                     {todo.description}
-                  </td>
-                  <td>
+                  </TableCell>
+                  <TableCell>
                     <EditTodo todo={todo} />
-                  </td>
-                  <td>
-                    <button
-                      className="btn btn-danger"
+                  </TableCell>
+                  <TableCell>
+                    <IconButton
+                      component="button"
                       onClick={() => deleteTodo(todo.todo_id)}
-                      disabled={todo.completed}
+                      color="error"
                     >
-                      Delete
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      className="btn btn-success"
+                      <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
+                  <TableCell>
+                    <IconButton
+                      component="button"
                       onClick={() => completeTodo(todo.todo_id)}
                       disabled={todo.completed}
+                      color="success"
                     >
-                      Complete
-                    </button>
-                  </td>
-                </tr>
+                      <DoneIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
               );
             })}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     </Fragment>
   );
 };

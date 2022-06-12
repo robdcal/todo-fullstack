@@ -1,4 +1,15 @@
 import React, { Fragment, useState } from "react";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton";
+import EditIcon from "@mui/icons-material/Edit";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface ToDo {
   todo: {
@@ -10,6 +21,15 @@ interface ToDo {
 
 const EditTodo = ({ todo }: ToDo) => {
   const [description, setDescription] = useState(todo.description);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const updateDescription = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -33,67 +53,49 @@ const EditTodo = ({ todo }: ToDo) => {
 
   return (
     <Fragment>
-      <button
-        type="button"
-        className="btn btn-warning"
-        data-bs-toggle="modal"
-        data-bs-target={`#modal-id-${todo.todo_id}`}
+      <IconButton
+        component="button"
+        onClick={handleClickOpen}
         disabled={todo.completed}
+        color="warning"
       >
-        Edit
-      </button>
-
-      <div
-        className="modal fade"
-        id={`modal-id-${todo.todo_id}`}
-        tabIndex={-1}
-        role="dialog"
-        aria-labelledby="modelTitleId"
-        aria-hidden="true"
+        <EditIcon />
+      </IconButton>
+      <Dialog
+        open={open}
+        onClose={handleClose}
         onClick={() => setDescription(todo.description)}
       >
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title">Edit Todo</h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-                onClick={() => setDescription(todo.description)}
-              ></button>
-            </div>
-            <div className="modal-body">
-              <input
-                type="text"
-                className="form-control"
-                value={description}
-                onChange={(event) => {
-                  setDescription(event.target.value);
-                }}
-              />
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-                onClick={() => setDescription(todo.description)}
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={(event) => updateDescription(event)}
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+        <IconButton
+          aria-label="close"
+          onClick={handleClose}
+          sx={{
+            position: "absolute",
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <DialogTitle>Edit Todo</DialogTitle>
+        <DialogContent sx={{ width: 500, maxWidth: "100%" }}>
+          <TextField
+            autoFocus
+            margin="normal"
+            label="Todo description"
+            variant="outlined"
+            value={description}
+            onChange={(event) => {
+              setDescription(event.target.value);
+            }}
+            fullWidth
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={(event) => updateDescription(event)}>Save</Button>
+        </DialogActions>
+      </Dialog>
     </Fragment>
   );
 };
