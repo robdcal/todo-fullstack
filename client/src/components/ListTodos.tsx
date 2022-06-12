@@ -68,40 +68,42 @@ const ListTodos = () => {
           </tr>
         </thead>
         <tbody>
-          {todos.map((todo) => {
-            return (
-              <tr key={todo.todo_id}>
-                <td
-                  style={
-                    todo.completed ? { textDecoration: "line-through" } : {}
-                  }
-                >
-                  {todo.description}
-                </td>
-                <td>
-                  <EditTodo todo={todo} />
-                </td>
-                <td>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => deleteTodo(todo.todo_id)}
-                    disabled={todo.completed}
+          {todos
+            .sort((a, b) => +a.completed - +b.completed)
+            .map((todo) => {
+              return (
+                <tr key={todo.todo_id}>
+                  <td
+                    style={
+                      todo.completed ? { textDecoration: "line-through" } : {}
+                    }
                   >
-                    Delete
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="btn btn-success"
-                    onClick={() => completeTodo(todo.todo_id)}
-                    disabled={todo.completed}
-                  >
-                    Complete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
+                    {todo.description}
+                  </td>
+                  <td>
+                    <EditTodo todo={todo} />
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => deleteTodo(todo.todo_id)}
+                      disabled={todo.completed}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-success"
+                      onClick={() => completeTodo(todo.todo_id)}
+                      disabled={todo.completed}
+                    >
+                      Complete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </Fragment>
