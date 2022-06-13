@@ -1,7 +1,5 @@
 const dotenv = require('dotenv')
-dotenv.config({
-    path: '../.env.local'
-})
+dotenv.config()
 
 const Pool = require("pg").Pool
 
