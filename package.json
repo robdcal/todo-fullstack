@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/robdcal/todo-fullstack/issues"
   },
-  "homepage": "https://github.com/robdcal/todo-fullstack#readme",
+  "homepage": "./client",
   "dependencies": {
     "dotenv": "^16.0.1"
   }
