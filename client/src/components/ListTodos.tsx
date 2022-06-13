@@ -62,7 +62,8 @@ const ListTodos = () => {
           return todo.todo_id === id ? { ...todo, completed: true } : todo;
         })
       );
-      window.location.href = "/";
+      // window.location.href = "/";
+      window.location.reload();
     } catch (error) {
       console.error(error.message);
     }
