@@ -38,7 +38,7 @@ const EditTodo = ({ todo }: ToDo) => {
     try {
       const body = { description };
       const response = await fetch(
-        `http://localhost:5000/todos/${todo.todo_id}`,
+        `https://rc-pern-todo.herokuapp.com/todos/${todo.todo_id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

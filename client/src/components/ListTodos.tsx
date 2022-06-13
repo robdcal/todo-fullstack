@@ -24,7 +24,7 @@ const ListTodos = () => {
 
   const getTodos = async () => {
     try {
-      const response = await fetch("http://localhost:5000/todos");
+      const response = await fetch("https://rc-pern-todo.herokuapp.com/todos");
       const jsonData = await response.json();
       setTodos(jsonData);
     } catch (error) {
@@ -34,9 +34,12 @@ const ListTodos = () => {
 
   const deleteTodo = async (id: string) => {
     try {
-      const deleteTodo = await fetch(`http://localhost:5000/todos/${id}`, {
-        method: "DELETE",
-      });
+      const deleteTodo = await fetch(
+        `https://rc-pern-todo.herokuapp.com/todos/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       setTodos(todos.filter((todo) => todo.todo_id !== id));
     } catch (error) {
       console.error(error.message);
@@ -46,11 +49,14 @@ const ListTodos = () => {
   const completeTodo = async (id: string) => {
     try {
       const body = { completed: true };
-      const completeTodo = await fetch(`http://localhost:5000/todos/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      const completeTodo = await fetch(
+        `https://rc-pern-todo.herokuapp.com/todos/${id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
       setTodos(
         todos.map((todo) => {
           return todo.todo_id === id ? { ...todo, completed: true } : todo;
