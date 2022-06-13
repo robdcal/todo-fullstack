@@ -94,6 +94,6 @@ app.delete("/todos/:id", async (req, res) => {
 //     }
 // })
 
-app.listen(8080, () => {
-    console.log("server has started on port 8080")
+app.listen(process.env.PORT || 5000, () => {
+    console.log(`server has started on port ${process.env.PORT || 5000}`)
 })
