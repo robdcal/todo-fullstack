@@ -9,7 +9,7 @@ app.use(express.json());
 
 // Routes
 // create todo
-app.post("/todos", cors(), async (req, res) => {
+app.post("/todos", async (req, res) => {
     try {
         const {
             description
@@ -22,7 +22,7 @@ app.post("/todos", cors(), async (req, res) => {
 })
 
 // get all todos
-app.get("/todos", cors(), async (req, res) => {
+app.get("/todos", async (req, res) => {
     try {
         const allTodos = await pool.query("SELECT * FROM todo")
         res.json(allTodos.rows)
@@ -32,7 +32,7 @@ app.get("/todos", cors(), async (req, res) => {
 })
 
 // get a todo
-app.get("/todos/:id", cors(), async (req, res) => {
+app.get("/todos/:id", async (req, res) => {
     try {
         const {
             id
@@ -45,7 +45,7 @@ app.get("/todos/:id", cors(), async (req, res) => {
 })
 
 // update a todo
-app.put("/todos/:id", cors(), async (req, res) => {
+app.put("/todos/:id", async (req, res) => {
     try {
         const {
             id
@@ -66,7 +66,7 @@ app.put("/todos/:id", cors(), async (req, res) => {
 })
 
 // delete a todo
-app.delete("/todos/:id", cors(), async (req, res) => {
+app.delete("/todos/:id", async (req, res) => {
     try {
         const {
             id
